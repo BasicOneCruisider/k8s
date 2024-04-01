@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    environment: test  # Consistent indentation for readability
+  name: francistestdriver
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      environment: test  # Consistent indentation
+  minReadySeconds: 10   # Corrected typo (mindReadySeconds)
+
+  # Strategy configuration (assuming a rolling update strategy)
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+
+  template:
+    metadata:
+      labels:
+        environment: test  # Consistent indentation
+
+    spec:
+      containers:
+      - name: nginx  # Corrected indentation and container name capitalization
+        image: nginx:1.17  # Consistent indentation
