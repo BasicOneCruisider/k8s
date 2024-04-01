@@ -2,27 +2,25 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    environment: test  # Consistent indentation for readability
+    environment: test  # Consistent indentation
   name: francistestdriver
 spec:
-  replicas: 3
+  # Number of replicas is missing, assuming you want to deploy at least one
+  replicas: 0  # Add this line
+
   selector:
     matchLabels:
-      environment: test  # Consistent indentation
-  minReadySeconds: 10   # Corrected typo (mindReadySeconds)
+      environment: test  # Selector for identifying pods to manage
 
-  # Strategy configuration (assuming a rolling update strategy)
-  strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+  # Deployment strategy configuration is missing
+  strategy: {}  # Add this line
 
   template:
     metadata:
       labels:
-        environment: test  # Consistent indentation
+        environment: test  # Labels for the pods
 
     spec:
       containers:
-      - name: nginx  # Corrected indentation and container name capitalization
-        image: nginx:1.17  # Consistent indentation
+      - name: nginx  # Container name
+        image: nginx:1.17  # Container image
